@@ -1,13 +1,14 @@
 package com.example.NYTAPI.Models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
+@AllArgsConstructor
 public class NytResponse {
     private String status;
     private String copyright;
