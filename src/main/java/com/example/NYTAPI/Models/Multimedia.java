@@ -5,4 +5,5 @@ import lombok.Data;
 @Data
 public class Multimedia {
     private String url;
+    private String subtype;
 }

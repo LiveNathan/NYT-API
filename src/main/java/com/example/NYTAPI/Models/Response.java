@@ -7,6 +7,5 @@ import java.util.List;
 
 @Data
 public class Response {
-    @JsonProperty("doc")
     private List<Doc> docs;
 }
