@@ -30,7 +30,7 @@ public class Article {
         this.title = title;
         this.summary = summary;
         this.media = media;
-        if (!media.isEmpty()) {
+        if (!media.get(0).getMediaMetadata().get(1).getUrl().isEmpty()) {
             this.imageUrl = getMedia().get(0).getMediaMetadata().get(1).getUrl();
         }
     }
