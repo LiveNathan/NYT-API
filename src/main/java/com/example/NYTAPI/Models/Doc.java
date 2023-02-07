@@ -25,11 +25,9 @@ public class Doc {
         this.pub_date = pub_date;
         this.byline = byline;
 
-        Optional<Multimedia> result = multimedia.stream().filter(media -> media.getSubtype().equals("largeHorizontal375")).findFirst();
-        result.ifPresent(value -> this.imageUrl = "https://www.nytimes.com/" + value.getUrl());
-//        Optional<Multimedia> result = multimedia.stream()
-//                .filter(media -> media.getSubtype().equals("largeHorizontal375"))
-//                .findFirst()
-//                .ifPresent(value -> this.imageUrl = "https://www.nytimes.com/" + value.getUrl());
+        multimedia.stream()
+                .filter(media -> media.getSubtype().equals("largeHorizontal375"))
+                .findFirst()
+                .ifPresent(value -> this.imageUrl = "https://www.nytimes.com/" + value.getUrl());
     }
 }
