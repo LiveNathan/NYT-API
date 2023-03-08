@@ -1,8 +1,12 @@
 package com.example.NYTAPI.Services;
 
-import com.example.NYTAPI.Models.*;
+import com.example.NYTAPI.Models.Article;
+import com.example.NYTAPI.Models.Doc;
+import com.example.NYTAPI.Models.NytResponse;
+import com.example.NYTAPI.Models.NytSearchResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -25,6 +29,7 @@ public class ArticleService {
     @Autowired
     RestTemplate restTemplate;
 
+    @Cacheable(value = "articles")
     public List<Article> getMostPopular() {
         NytResponse response = restTemplate.getForObject(mostPopularUrl + "api-key=" + apikey, NytResponse.class);
         List<Article> results = new ArrayList<>();
@@ -35,6 +40,7 @@ public class ArticleService {
         }
     }
 
+    @Cacheable(value = "docs")
     public List<Doc> getSearchResults(String searchText) {
         ResponseEntity<NytSearchResponse> responseEntity = restTemplate.getForEntity(articleSearchUrl + "q=" + searchText + "&api-key=" + apikey, NytSearchResponse.class);
         List<Doc> docs = new ArrayList<>();
